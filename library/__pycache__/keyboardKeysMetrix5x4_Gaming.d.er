@@ -1,0 +1,55 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/keyboardKeysMetrix5x4_Gaming.py 1767376361 3616
+.time: Never
+
+.math: Never
+
+.lgpio: Never
+
+.___v_desugar_1 = pyimport "hidpi"
+.hidpi = pyimport "hidpi"
+.Keyboard: {keyboard.Keyboard}
+.Mouse: {mouse.Mouse}
+.DUMMY = pyimport "keyboard_keys"
+.keyboard_keys = pyimport "keyboard_keys"
+.mouse_buttons = pyimport "mouse_buttons"
+.keys: global::List!(global::List!({"G", "W", "A", "Z", "D", "T", "R", "B", "F", "X", "V", "Shift", "Del", "Space", "L0", "Tab", "Q", "E", "C", "S"}, 5), 4)
+.ROW_PINS: Never
+.COL_PINS: Never
+.h: Never
+
+
+
+
+
+
+
+
+.pressed_keys: Never
+.key_debounce: global::Dict!({global::Tuple([Nat, Nat]): Never})
+.DEBOUNCE_MS: {50}
+.SCAN_INTERVAL: {0.01}
+.get_keycode: |Type_9333: Type, T <: Structural({.upper = (self: Obj) -> Type_9333})|(key_label: T) -> NoneType or {20, 9, 5, 26, 22, 8, 7, 4, 25, 21, 10, 6, 27, 29, 23}
+.scan_matrix: |Type_9861 :> NoneType or {20, 9, 5, 26, 22, 8, 7, 4, 25, 21, 10, 6, 27, 29, 23}, Type_9686: Type, Type_9685 :> NoneType or {20, 9, 5, 26, 22, 8, 7, 4, 25, 21, 10, 6, 27, 29, 23}, Type_9274 <: Structural({.hold_key = (self: Obj, Type_9861) -> Type_9862; .release = (self: Obj, Type_9685) -> Type_9686}), Type_9862: Type|(kbd: Type_9274) -> NoneType
+.kbd: Never
+
+
+
+
+
+
+
+
+
+
+3 <: NoneType|(kbd: Type_1846) -> NoneType
+.kbd: Never
+
+
+
+
+
+
+
+
+
+

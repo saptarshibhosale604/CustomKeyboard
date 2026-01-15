@@ -1,0 +1,39 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/keyboardArrowKeys.py 1767764449 3652
+.time: Never
+
+.math: Never
+
+.___v_desugar_1 = pyimport "hidpi"
+.hidpi = pyimport "hidpi"
+.Keyboard: {keyboard.Keyboard}
+.Mouse: {mouse.Mouse}
+.DUMMY = pyimport "keyboard_keys"
+.keyboard_keys = pyimport "keyboard_keys"
+.mouse_buttons = pyimport "mouse_buttons"
+.glob: Never
+
+.os: Never
+
+.timeAfterKeyDetected: {0.01}
+.test_hid: () -> NoneType
+.test_keyboard: () -> NoneType
+.test_mouse: () -> NoneType
+.GPIO: Never
+
+.time: Never
+
+
+.pin_key_map_02: global::Dict!({{33}: {"g"}, {35}: {"h"}, {37}: {"j"}, {31}: {"y"}})
+
+
+
+
+
+.MapGPIOToKeyLoop: () -> NoneType
+
+
+
+
+
+
+

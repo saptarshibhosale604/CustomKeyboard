@@ -1,0 +1,40 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/keyboardKeysMetrix.py 1767361924 4839
+.time: Never
+
+.math: Never
+
+.___v_desugar_1 = pyimport "hidpi"
+.hidpi = pyimport "hidpi"
+.Keyboard: {keyboard.Keyboard}
+.Mouse: {mouse.Mouse}
+.DUMMY = pyimport "keyboard_keys"
+.keyboard_keys = pyimport "keyboard_keys"
+.mouse_buttons = pyimport "mouse_buttons"
+.lgpio: Never
+
+.time: Never
+
+.keys: global::List!(global::List!({"s", "q", "w", "a"}, 2), 2)
+.COL_PINS: Never
+.ROW_PINS: Never
+.h: Never
+
+
+
+
+
+
+
+
+
+.scan_matrix: () -> NoneType
+.Send_key: (device_id: Obj, keyValue: Str) -> NoneType
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/main04_checkpoint.py.bak 1767721711 5437
+
+.time: Never
+
+.glob: Never
+
+.___v_desugar_1: Never
+.DigitalOutputDevice: Never
+.Button: Never
+.___v_desugar_2 = pyimport "hidpi"
+.hidpi = pyimport "hidpi"
+.Keyboard: {keyboard.Keyboard}
+.DUMMY = pyimport "keyboard_keys"
+.keyboard_keys = pyimport "keyboard_keys"
+.scanDelay: {0.01}
+.longPressTime: {0.6}
+.layerSwitchDelay: {1.0}
+.ROW_PINS_BCM: Never
+.COL_PINS_BCM: Never
+.L1_SHORT: Never
+.L1_LONG: Never
+.L2: Never
+.keyMap: Never
+.modifierNames: global::Set!({"LEFT_GUI", "RIGHT_GUI", "RIGHT_CTRL", "LEFT_SHIFT", "RIGHT_ALT", "LEFT_ALT", "LEFT_CTRL", "RIGHT_SHIFT"}, _: Nat)
+.rowGpios: global::List!(Never, 0)
+.colGpios: global::List!(Never, 0)
+.pressed: Never
+.pressTime: global::Dict!({global::Indexable(Obj, Int): Never})
+.longSent: Never
+.currentLayer: {1}
+.activeModifiers: {0}
+.TestHid: () -> NoneType
+.SetupMatrixKeyboard: () -> NoneType
+.ScanMatrix: () -> Structural({.__sub__ = (self: Never, Obj) -> global::Iterable(global::Indexable(Obj, Int)) and (self: Never, Obj) -> global::Iterable(Never)})
+.HandleLayer1Press: (key: global::Indexable(Obj, Int)) -> NoneType
+.HandleLayer1Hold: (key: global::Indexable(Obj, Int)) -> Never
+.HandleLayer1Release: (key: global::Indexable(Obj, Int)) -> Never
+.SwitchLayer: (delta: Int) -> NoneType
+.MainLoop: () -> NoneType
+
+
+
+
+
+

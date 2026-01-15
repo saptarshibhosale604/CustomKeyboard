@@ -1,0 +1,28 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/detectGPIO.py 1759033838 649
+.GPIO: Never
+
+.time: Never
+
+
+.pin_key_map: global::Dict!({{33}: {"j"}, {35}: {"k"}, {37}: {"l"}, {31}: {"h"}})
+
+
+
+
+
+
+
+.pin: {37, 31, 33, 35}
+.key: {"k", "l", "h", "j"}
+
+
+
+
+
+
+
+
+
+
+
+

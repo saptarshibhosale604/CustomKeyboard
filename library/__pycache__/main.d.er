@@ -1,0 +1,78 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/main.py 1768411092 25900
+
+.sys: Never
+
+.time: Never
+
+.glob: Never
+
+.___v_desugar_1: Never
+.DigitalOutputDevice: Never
+.Button: Never
+.___v_desugar_2 = pyimport "hidpi"
+.hidpi = pyimport "hidpi"
+.Keyboard: {keyboard.Keyboard}
+.DUMMY = pyimport "keyboard_keys"
+.keyboard_keys = pyimport "keyboard_keys"
+.scanDelay: {0.01}
+.longPressTime: {0.3}
+.layerSwitchDelay: {0.1}
+.ROW_PINS_BCM: Never
+.COL_PINS_BCM: Never
+.matrixStateGamingLayer: global::List!(global::List!(Bool, _: Nat), _: Nat)
+.pressTimeGamingLayer: global::List!(global::List!(Never, _: Nat), _: Nat)
+.maxHidKeysGamingLayer: {6}
+.L1_SHORT: Never
+.L1_LONG: Never
+.tempLayerUp: {False}
+.isLayerTempLayerUp01Active: {False}
+.isLayerTempLayerUp02Active: {False}
+.FUNCTION_COMBOS: Never
+.SPECIAL_COMBOS: Never
+.L2_SHORT: Never
+.L2_LONG: Never
+.PRINT_COMBOS: Never
+.L3_SHORT: Never
+.L3_LONG: Never
+.gamingLayerNumber: {4}
+.KEY_MATRIX_LAYER_09: Never
+.layerChangeLayerNumber: {5}
+.L5_SHORT: Never
+.L5_LONG: Never
+.LAYER_SHORT_MAP: Never
+.LAYER_LONG_MAP: Never
+.keyMap: Never
+.modifierNames: global::Set!({"RIGHT_SHIFT", "LEFT_SHIFT", "LEFT_GUI", "RIGHT_CTRL", "RIGHT_GUI", "LEFT_CTRL", "RIGHT_ALT", "LEFT_ALT"}, _: Nat)
+.rowGpios: global::List!(Never, 0)
+.colGpios: global::List!(Never, 0)
+.pressed: Never
+.pressTime: global::Dict!({global::Indexable(Obj, Int): Never})
+.longSent: Never
+.currentLayer: {1}
+.activeModifiers: {0}
+.TestHid: () -> NoneType
+.SetupMatrixKeyboard: () -> NoneType
+.ScanMatrix: () -> Structural({.__sub__ = (self: Never, Obj) -> global::Iterable(global::Indexable(Obj, Int)) and (self: Never, Obj) -> global::Iterable(Never); .__contains__ = (self: Never, Obj) -> Bool})
+.GetActiveKey: (row: Int, col: Obj, isLong: Bool) -> {"LAYER_UP"}
+.HandleLayerXPress: (key: global::Indexable(Obj, Int)) -> NoneType
+.isModifierHold: {False}
+.HandleLayerXHold: (key: global::Indexable(Obj, Int), LX_LONG: global::Indexable(Obj, global::Indexable(Obj, {"LAYER_UP"}))) -> Never
+.HandleLayerXRelease: (key: global::Indexable(Obj, Int), LX_SHORT: global::Indexable(Obj, global::Indexable(Obj, {"SPECIAL_TEST"})), LX_LONG: global::Indexable(Obj, global::Indexable(Obj, Never))) -> Never
+.maxLayer: {5}
+.PrintLayerShort: (layer_num: Obj) -> Never
+.SwitchLayer: (delta: Int := Int, layerNumber: Int := Int and Int) -> NoneType
+.UpdateKeyboardGamingLayer: () -> Never
+.time: Never
+
+.lastPrintTimeIntervalPrint: {0.0}
+.printIntervalIntervalPrint: {2.0}
+.PrintCurrentLayer: () -> NoneType
+.MainLoop: () -> NoneType
+.WelcomeScript: () -> NoneType
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+##[pylyzer] succeed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/hidpi/mouse_buttons.py 1759033838 38
+.LEFT: {1}
+.RIGHT: {2}
+.BOTH: {3}
+.MIDDLE: {4}

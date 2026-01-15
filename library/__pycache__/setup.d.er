@@ -1,0 +1,7 @@
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/setup.py 1759033838 240
+.___v_desugar_1: Never
+.setup: Never
+.___v_desugar_2 = pyimport "hidpi"
+.hidpi = pyimport "hidpi"
+.__version__: {"1.1"}
+
