@@ -1,14 +1,15 @@
-##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/hidpi/mouse.py 1759033838 1715
-
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/hidpi/mouse.py 1768499031 652
 .time: Never
 
-.DUMMY = pyimport "mouse_buttons"
-.mouse_buttons = pyimport "mouse_buttons"
 .MOUSE_DEVICE: {".dev.hidg1"}
 .Mouse: ClassType
 .Mouse.__call__: () -> mouse.Mouse
-.Mouse.move: |R :> {255}, Type_1715 <: Structural({.__and__ = (self: Never, R) -> O}), O: Type|(x: Type_1715, y: Structural({.__and__ = (self: Never, R) -> O}), wheel: Structural({.__and__ = (self: Never, R) -> O}) := {0} and Structural({.__and__ = (self: Never, R) -> O})) -> NoneType
+.Mouse._fd: {None}
+.Mouse._open: () -> NoneType
+.Mouse.move: |Type_259 <: Structural({.__and__ = (self: Never, ?R) -> ?O}), R: Type, O: Type, R :> {255}|(x: Type_259, y: Structural({.__and__ = (self: Never, R) -> O}), wheel: Structural({.__and__ = (self: Never, R) -> O}) := {0} and Structural({.__and__ = (self: Never, R) -> O})) -> NoneType
 .Mouse.click: (button: Obj, hold: Bool := Bool) -> NoneType
+
+Bool := Bool) -> NoneType
 .Mouse._send_report: |Type_1753 <: Bool|(report: global::Bytes, hold: Type_1753 := Type_1753 and Type_1753) -> NoneType
 
  NoneType

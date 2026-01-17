@@ -1,5 +1,7 @@
 #!/bin/python3
 
+# Reference: https://github.com/rikka-chunibyo/HIDPi/wiki
+
 import os
 import shutil
 import subprocess
@@ -11,13 +13,13 @@ if os.geteuid() != 0:
     sys.exit(1)
 
 SERIAL_NUMBER = "1234567890"
-MANUFACTURER = "Rikka"
+MANUFACTURER = "SSB Rikka"
 PRODUCT = "HIDPi"
 
 INSTALL_PATH = "/usr/local/bin/HIDPi.py"
 PYTHON_LOCATION = "/usr/bin/python3"
-SERVICE_NAME = "HIDPi"
-SERVICE_PATH = f"/etc/systemd/system/{SERVICE_NAME}.service"
+# SERVICE_NAME = "HIDPi"
+ # SERVICE_PATH = f"/etc/systemd/system/{SERVICE_NAME}.service"
 
 # manually change if this doesn't work for you for whatever reason
 FIRMWARE_CONFIG_FILE = (
@@ -47,35 +49,35 @@ def run_commands(commands):
 
 
 # --- INSTALL ---
-def install_self():
-    if os.path.abspath(__file__) != INSTALL_PATH:
-        print("Copying script to " + INSTALL_PATH + "...")
-        shutil.copy(__file__, INSTALL_PATH)
-        os.chmod(INSTALL_PATH, 0o755)
-
-    service_content = f"""[Unit]
-Description=HIDPi Initialization
-After=network.target multi-user.target
-Wants=multi-user.target
-
-[Service]
-Type=oneshot
-ExecStart={PYTHON_LOCATION} {INSTALL_PATH}
-RemainAfterExit=yes
-User=root
-
-[Install]
-WantedBy=multi-user.target
-"""
-    print("Creating systemd service...")
-    with open(SERVICE_PATH, "w") as f:
-        f.write(service_content)
-
-    run_commands([
-        "systemctl daemon-reload",
-        f"systemctl enable {SERVICE_NAME}.service"
-    ])
-    print(f"{SERVICE_NAME} service installed. It will run on next boot")
+# def install_self():
+#     if os.path.abspath(__file__) != INSTALL_PATH:
+#         print("Copying script to " + INSTALL_PATH + "...")
+#         shutil.copy(__file__, INSTALL_PATH)
+#         os.chmod(INSTALL_PATH, 0o755)
+#
+#     service_content = f"""[Unit]
+# Description=HIDPi Initialization
+# After=network.target multi-user.target
+# Wants=multi-user.target
+#
+# [Service]
+# Type=oneshot
+# ExecStart={PYTHON_LOCATION} {INSTALL_PATH}
+# RemainAfterExit=yes
+# User=root
+#
+# [Install]
+# WantedBy=multi-user.target
+# """
+#     print("Creating systemd service...")
+#     with open(SERVICE_PATH, "w") as f:
+#         f.write(service_content)
+#
+#     run_commands([
+#         "systemctl daemon-reload",
+#         f"systemctl enable {SERVICE_NAME}.service"
+#     ])
+#     print(f"{SERVICE_NAME} service installed. It will run on next boot")
 
 def check_config():
     try:
@@ -300,7 +302,7 @@ def remove_udev_rule():
 
 # --- MAIN ---
 def install():
-    install_self()
+    # install_self()
     modify_config_txt()
     setup_hid_gadget()
     create_udev_rule()
@@ -328,4 +330,3 @@ if __name__ == "__main__":
     else:
         print(f"Unknown argument: {args[0]}")
         print("Run with --help or -h for usage")
-

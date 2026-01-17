@@ -1,4 +1,4 @@
-##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/hidpi/keyboard_keys.py 1767973278 2615
+##[pylyzer] succeed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/hidpi/keyboard_keys.py 1767973278 2615
 .KEY_NONE: {0}
 .KEY_A: {4}
 .KEY_B: {5}
@@ -98,4 +98,5 @@
 .KEY_BRIGHTNESS_UP: {111}
 .KEY_BRIGHTNESS_DOWN: {112}
 .KEY_MAPPINGS: Never
+ever
 

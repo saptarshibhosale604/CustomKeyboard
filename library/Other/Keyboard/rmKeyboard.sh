@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-G=/sys/kernel/config/usb_gadget/pi_keyboard
+# G=/sys/kernel/config/usb_gadget/pi_keyboard
+G=/sys/kernel/config/usb_gadget/hid_gadget
 
 [ -e $G/UDC ] && echo "" > $G/UDC
 rm -f $G/configs/c.1/hid.usb0

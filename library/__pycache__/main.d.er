@@ -1,4 +1,4 @@
-##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/main.py 1768411092 25900
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py 1768634576 22537
 
 .sys: Never
 
@@ -14,6 +14,25 @@
 .Keyboard: {keyboard.Keyboard}
 .DUMMY = pyimport "keyboard_keys"
 .keyboard_keys = pyimport "keyboard_keys"
+.___v_desugar_3 = pyimport "piSystemActions"
+.piSystemActions = pyimport "piSystemActions"
+.PiShutdown: Never
+.PiReboot: Never
+.___v_desugar_4 = pyimport "layers"
+.layers = pyimport "layers"
+.LAYER_SHORT_MAP: Never
+.LAYER_LONG_MAP: Never
+.gamingLayerNumber: {5}
+.layerChangeLayerNumber: {6}
+.maxLayer: Never
+.___v_desugar_5 = pyimport "combos"
+.combos = pyimport "combos"
+.FUNCTION_COMBOS: Never
+.SPECIAL_COMBOS: Never
+.PRINT_COMBOS: Never
+.modifierNames: global::Set!({"RIGHT_ALT", "LEFT_CTRL", "LEFT_SHIFT", "RIGHT_SHIFT", "RIGHT_CTRL", "LEFT_GUI", "RIGHT_GUI", "LEFT_ALT"}, _: Nat)
+.mouseManager = pyimport "mouseManager"
+
 .scanDelay: {0.01}
 .longPressTime: {0.3}
 .layerSwitchDelay: {0.1}
@@ -22,43 +41,25 @@
 .matrixStateGamingLayer: global::List!(global::List!(Bool, _: Nat), _: Nat)
 .pressTimeGamingLayer: global::List!(global::List!(Never, _: Nat), _: Nat)
 .maxHidKeysGamingLayer: {6}
-.L1_SHORT: Never
-.L1_LONG: Never
 .tempLayerUp: {False}
 .isLayerTempLayerUp01Active: {False}
 .isLayerTempLayerUp02Active: {False}
-.FUNCTION_COMBOS: Never
-.SPECIAL_COMBOS: Never
-.L2_SHORT: Never
-.L2_LONG: Never
-.PRINT_COMBOS: Never
-.L3_SHORT: Never
-.L3_LONG: Never
-.gamingLayerNumber: {4}
-.KEY_MATRIX_LAYER_09: Never
-.layerChangeLayerNumber: {5}
-.L5_SHORT: Never
-.L5_LONG: Never
-.LAYER_SHORT_MAP: Never
-.LAYER_LONG_MAP: Never
+.isModifierHold: {False}
 .keyMap: Never
-.modifierNames: global::Set!({"RIGHT_SHIFT", "LEFT_SHIFT", "LEFT_GUI", "RIGHT_CTRL", "RIGHT_GUI", "LEFT_CTRL", "RIGHT_ALT", "LEFT_ALT"}, _: Nat)
 .rowGpios: global::List!(Never, 0)
 .colGpios: global::List!(Never, 0)
 .pressed: Never
-.pressTime: global::Dict!({global::Indexable(Obj, Int): Never})
+.pressTime: global::Dict!({Never: Never})
 .longSent: Never
 .currentLayer: {1}
 .activeModifiers: {0}
 .TestHid: () -> NoneType
 .SetupMatrixKeyboard: () -> NoneType
-.ScanMatrix: () -> Structural({.__sub__ = (self: Never, Obj) -> global::Iterable(global::Indexable(Obj, Int)) and (self: Never, Obj) -> global::Iterable(Never); .__contains__ = (self: Never, Obj) -> Bool})
-.GetActiveKey: (row: Int, col: Obj, isLong: Bool) -> {"LAYER_UP"}
-.HandleLayerXPress: (key: global::Indexable(Obj, Int)) -> NoneType
-.isModifierHold: {False}
-.HandleLayerXHold: (key: global::Indexable(Obj, Int), LX_LONG: global::Indexable(Obj, global::Indexable(Obj, {"LAYER_UP"}))) -> Never
-.HandleLayerXRelease: (key: global::Indexable(Obj, Int), LX_SHORT: global::Indexable(Obj, global::Indexable(Obj, {"SPECIAL_TEST"})), LX_LONG: global::Indexable(Obj, global::Indexable(Obj, Never))) -> Never
-.maxLayer: {5}
+.ScanMatrix: () -> Structural({.__sub__ = (self: Never, Obj) -> global::Iterable(Never); .__contains__ = (self: Never, Obj) -> Bool})
+.GetActiveKey: (row: Int, col: Obj, isLong: Obj) -> {"LAYER_UP"}
+.HandleLayerXPress: (key: Obj) -> NoneType
+.HandleLayerXHold: (key: global::Indexable(Obj, Never), layerNumber: Obj) -> Never
+.HandleLayerXRelease: (key: global::Indexable(Obj, Never), layerNumber: Obj) -> Never
 .PrintLayerShort: (layer_num: Obj) -> Never
 .SwitchLayer: (delta: Int := Int, layerNumber: Int := Int and Int) -> NoneType
 .UpdateKeyboardGamingLayer: () -> Never
@@ -68,6 +69,46 @@
 .printIntervalIntervalPrint: {2.0}
 .PrintCurrentLayer: () -> NoneType
 .MainLoop: () -> NoneType
+.WelcomeScript: () -> NoneType
+
+
+
+
+
+
+
+ Never
+.time: Never
+
+.lastPrintTimeIntervalPrint: {0.0}
+.printIntervalIntervalPrint: {2.0}
+.PrintCurrentLayer: () -> NoneType
+.MainLoop: () -> NoneType
+.WelcomeScript: () -> NoneType
+
+
+
+
+
+
+
+ and Int) -> NoneType
+.UpdateKeyboardGamingLayer: () -> Never
+.time: Never
+
+.lastPrintTimeIntervalPrint: {0.0}
+.printIntervalIntervalPrint: {2.0}
+.PrintCurrentLayer: () -> NoneType
+.MainLoop: () -> NoneType
+.WelcomeScript: () -> NoneType
+
+
+
+
+
+
+
+nLoop: () -> NoneType
 .WelcomeScript: () -> NoneType
 
 
