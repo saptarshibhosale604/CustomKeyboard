@@ -6,10 +6,12 @@
 .Mouse.__call__: () -> mouse.Mouse
 .Mouse._fd: {None}
 .Mouse._open: () -> NoneType
-.Mouse.move: |Type_259 <: Structural({.__and__ = (self: Never, ?R) -> ?O}), R: Type, O: Type, R :> {255}|(x: Type_259, y: Structural({.__and__ = (self: Never, R) -> O}), wheel: Structural({.__and__ = (self: Never, R) -> O}) := {0} and Structural({.__and__ = (self: Never, R) -> O})) -> NoneType
+.Mouse.move: |Type_20929 <: Structural({.__and__ = (self: Never, R) -> O}), R :> {255}, O: Type|(x: Type_20929, y: Structural({.__and__ = (self: Never, R) -> O}), wheel: Structural({.__and__ = (self: Never, R) -> O}) := {0} and Structural({.__and__ = (self: Never, R) -> O})) -> NoneType
 .Mouse.click: (button: Obj, hold: Bool := Bool) -> NoneType
 
-Bool := Bool) -> NoneType
+ NoneType
+
+ := Bool) -> NoneType
 .Mouse._send_report: |Type_1753 <: Bool|(report: global::Bytes, hold: Type_1753 := Type_1753 and Type_1753) -> NoneType
 
  NoneType

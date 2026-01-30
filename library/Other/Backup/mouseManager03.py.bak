@@ -98,12 +98,12 @@ def MouseMovementLoop():
     global isMouseMovementLoopOn
 
     isMouseMovementLoopOn = True
-    lastMouseActionTime = time.time()   # Track last movement timestamp
+    last_movement_time = time.time()   # Track last movement timestamp
 
     try:
         with Mouse(absolute=False) as mouse:
             while True:
-                mouseAction = False  # Flag to detect movement in this iteration
+                moved = False  # Flag to detect movement in this iteration
 
                 # Debug / status output
                 print(
@@ -113,33 +113,28 @@ def MouseMovementLoop():
                     f"RIGHT={movement_right}"
                 )
 
-                # if click_left
-                #     # def left_click(self, release=True):
-                #     mouse.left_click()
-                #     mouseAction = True
-
                 if movement_left:
                     MoveRelative(mouse, -moveStep, 0)
-                    mouseAction = True
+                    moved = True
 
                 if movement_right:
                     MoveRelative(mouse, moveStep, 0)
-                    mouseAction = True
+                    moved = True
 
                 if movement_down:
                     MoveRelative(mouse, 0, moveStep)
-                    mouseAction = True
+                    moved = True
 
                 if movement_up:
                     MoveRelative(mouse, 0, -moveStep)
-                    mouseAction = True
+                    moved = True
 
                 # Update last movement time if movement occurred
-                if mouseAction:
-                    lastMouseActionTime = time.time()
+                if moved:
+                    last_movement_time = time.time()
                 else:
                     # Break if no movement for 2 seconds
-                    if time.time() - lastMouseActionTime >= breakMouseLoopTime:
+                    if time.time() - last_movement_time >= breakMouseLoopTime:
                         print(f"\n⏹️ No movement for {breakMouseLoopTime} Seconds. Stopping loop.")
                         break
 
@@ -220,10 +215,6 @@ def MouseMovementLoop():
 import threading
 # import time
 
-# Click state variables
-click_left = False
-click_right = False
-
 # Movement state variables
 movement_up = False
 movement_down = False
@@ -287,16 +278,12 @@ def Main02():
         )
 
 
-def Main(cmdInput, cmdStatus):
-
-    global click_left
-    global click_right
+def Main(cmdMovement, cmdStatus):
 
     global movement_up
     global movement_down
     global movement_left
     global movement_right
-    
     global isMouseMovementLoopOn
 
     # print("Enter movement command: up, down, left, right, stop")
@@ -316,32 +303,17 @@ def Main(cmdInput, cmdStatus):
 
     # while True:
     # command = input("command: ").strip().lower()
-    if cmdInput.startswith('click'):
-        print("inside mouse click")
-        if cmdInput == "click_left":
-            print("inside mouse click_left")
-            # click_left = cmdStatus
-            if click_left:
-                # def left_click(self, release=True):
-                # mouse.left_click(release=cmdStatus)
-                Mouse.left_click()
-            # mouseAction = True
 
+    if cmdMovement == "up":
+        movement_up = cmdStatus
+    elif cmdMovement == "down":
+        movement_down = cmdStatus
+    elif cmdMovement == "left":
+         movement_left = cmdStatus
+    elif cmdMovement == "right":
+        movement_right = cmdStatus
 
-        if cmdInput == "click_right":
-            click_right = cmdStatus
-
-    if cmdInput.startswith('move'):
-        if cmdInput == "move_up":
-            movement_up = cmdStatus
-        elif cmdInput == "move_down":
-            movement_down = cmdStatus
-        elif cmdInput == "move_left":
-             movement_left = cmdStatus
-        elif cmdInput == "move_right":
-            movement_right = cmdStatus
-
-    if cmdInput == "stop":
+    if cmdMovement == "stop":
         movement_up = False
         movement_down = False
         movement_left = False

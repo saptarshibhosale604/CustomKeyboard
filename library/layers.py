@@ -66,8 +66,8 @@ L3_LONG = [
 # --------------------------------------------------
 
 L4_SHORT = [
-    ['','','','','','','','','',''],
-    ['','','','','','MOUSE_LEFT','MOUSE_DOWN','MOUSE_UP','MOUSE_RIGHT',''],
+    ['','','MOUSE_MOVE_UP','','','','MOUSE_CLICK_LEFT','MOUSE_CLICK_RIGHT','',''],
+    ['','MOUSE_MOVE_LEFT','MOUSE_MOVE_DOWN','MOUSE_MOVE_RIGHT','','','','','',''],
     ['','','','','','','','','',''],
     ['ESC','SPACE','LAYER_UP','','','LAYER_DOWN','ENTER','BACKSPACE','','']
 ]

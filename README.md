@@ -285,8 +285,10 @@ Old ➤ sudo ./cleanupGadget02.sh                                 git:main*
 
 
 - create the hid device in this location 
-/sys/kernel/config/usb_gadget,
+    /sys/kernel/config/usb_gadget,
 create a autorunning service
+SERVICE_PATH = f"/etc/systemd/system/HIDPi.service"
+
 
  CustomKeyboard ➤ sudo python ./library/Old/HIDPi_Setup.py
 

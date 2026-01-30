@@ -1,4 +1,4 @@
-##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py 1768634576 22537
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py 1768800352 23540
 
 .sys: Never
 
@@ -24,7 +24,7 @@
 .LAYER_LONG_MAP: Never
 .gamingLayerNumber: {5}
 .layerChangeLayerNumber: {6}
-.maxLayer: Never
+.maxLayer: {6}
 .___v_desugar_5 = pyimport "combos"
 .combos = pyimport "combos"
 .FUNCTION_COMBOS: Never
@@ -36,6 +36,7 @@
 .scanDelay: {0.01}
 .longPressTime: {0.3}
 .layerSwitchDelay: {0.1}
+.mouseLoopDelay: {0.01}
 .ROW_PINS_BCM: Never
 .COL_PINS_BCM: Never
 .matrixStateGamingLayer: global::List!(global::List!(Bool, _: Nat), _: Nat)
@@ -49,15 +50,15 @@
 .rowGpios: global::List!(Never, 0)
 .colGpios: global::List!(Never, 0)
 .pressed: Never
-.pressTime: global::Dict!({Never: Never})
+.pressTime: global::Dict!({global::Indexable(Obj, Never): Never})
 .longSent: Never
 .currentLayer: {1}
 .activeModifiers: {0}
 .TestHid: () -> NoneType
 .SetupMatrixKeyboard: () -> NoneType
-.ScanMatrix: () -> Structural({.__sub__ = (self: Never, Obj) -> global::Iterable(Never); .__contains__ = (self: Never, Obj) -> Bool})
+.ScanMatrix: () -> Structural({.__sub__ = (self: Never, Obj) -> global::Iterable(global::Indexable(Obj, Never)); .__contains__ = (self: Never, Obj) -> Bool})
 .GetActiveKey: (row: Int, col: Obj, isLong: Obj) -> {"LAYER_UP"}
-.HandleLayerXPress: (key: Obj) -> NoneType
+.HandleLayerXPress: (key: global::Indexable(Obj, Never), layerNumber: Obj) -> Never
 .HandleLayerXHold: (key: global::Indexable(Obj, Never), layerNumber: Obj) -> Never
 .HandleLayerXRelease: (key: global::Indexable(Obj, Never), layerNumber: Obj) -> Never
 .PrintLayerShort: (layer_num: Obj) -> Never
@@ -77,12 +78,7 @@
 
 
 
- Never
-.time: Never
-
-.lastPrintTimeIntervalPrint: {0.0}
-.printIntervalIntervalPrint: {2.0}
-.PrintCurrentLayer: () -> NoneType
+() -> NoneType
 .MainLoop: () -> NoneType
 .WelcomeScript: () -> NoneType
 
