@@ -1,4 +1,4 @@
-##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/hidpi/keyboard.py 1759033838 3542
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/hidpi/keyboard.py 1759033838 3542
 
 .time: Never
 
@@ -7,12 +7,14 @@
 .HID_DEVICE: {".dev.hidg0"}
 .Keyboard: ClassType
 .Keyboard.__call__: () -> keyboard.Keyboard
-.Keyboard.char_to_keycode: |Type_27802 <: Structural({.lower = (self: Obj) -> ?27829}), Type_27829: Type|(char: Type_27802) -> NoneType
+.Keyboard.char_to_keycode: |Type_205: Type, Type_142 <: Structural({.lower = (self: Obj) -> Type_205})|(char: Type_142) -> NoneType
 .Keyboard.send_key: (modifiers: Obj, *keys: Obj, hold: Bool := Bool) -> NoneType
 .Keyboard.hold_key: (modifiers: Obj, *keys: Obj) -> NoneType
 .Keyboard.release_keys: () -> NoneType
 .Keyboard.send_text: (text: global::Iterable(Structural({.isupper = (self: Obj) -> Bool; .lower = (self: Obj) -> Never})), delay: Bool := Bool, hold: Bool := Bool) -> NoneType
 .Keyboard._send_report: (report: global::Bytes) -> NoneType
+
+NoneType
 
 pe
 

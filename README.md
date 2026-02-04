@@ -358,4 +358,9 @@ sudo sh -c 'echo 1000480000.usb > /sys/kernel/config/usb_gadget/hid_gadget/UDC'
 
 - mouse movement is here
 - descriptor for this mouse and OLD keyboard is working
+- init_usb_gadget run this to create a descriptor 
+- and remove_usb_gadget for removing the descritor
+
+
+- init_usb_gadget02 for keyboard, mouse01, mouse02, media control
 

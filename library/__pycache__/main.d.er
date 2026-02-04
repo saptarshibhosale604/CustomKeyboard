@@ -1,4 +1,4 @@
-##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py 1768800352 23540
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py 1770178201 23848
 
 .sys: Never
 
@@ -14,18 +14,22 @@
 .Keyboard: {keyboard.Keyboard}
 .DUMMY = pyimport "keyboard_keys"
 .keyboard_keys = pyimport "keyboard_keys"
-.___v_desugar_3 = pyimport "piSystemActions"
+.___v_desugar_3 = pyimport "media"
+.media = pyimport "media"
+.Media: {media.Media}
+.media_keys = pyimport "media_keys"
+.___v_desugar_4 = pyimport "piSystemActions"
 .piSystemActions = pyimport "piSystemActions"
 .PiShutdown: Never
 .PiReboot: Never
-.___v_desugar_4 = pyimport "layers"
+.___v_desugar_5 = pyimport "layers"
 .layers = pyimport "layers"
 .LAYER_SHORT_MAP: Never
 .LAYER_LONG_MAP: Never
-.gamingLayerNumber: {5}
-.layerChangeLayerNumber: {6}
-.maxLayer: {6}
-.___v_desugar_5 = pyimport "combos"
+.gamingLayerNumber: {6}
+.layerChangeLayerNumber: {7}
+.maxLayer: {7}
+.___v_desugar_6 = pyimport "combos"
 .combos = pyimport "combos"
 .FUNCTION_COMBOS: Never
 .SPECIAL_COMBOS: Never
@@ -78,18 +82,10 @@
 
 
 
-() -> NoneType
-.MainLoop: () -> NoneType
-.WelcomeScript: () -> NoneType
 
 
 
-
-
-
-
- and Int) -> NoneType
-.UpdateKeyboardGamingLayer: () -> Never
+Layer: () -> Never
 .time: Never
 
 .lastPrintTimeIntervalPrint: {0.0}

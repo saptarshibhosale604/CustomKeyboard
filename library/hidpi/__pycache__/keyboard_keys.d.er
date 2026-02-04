@@ -1,4 +1,4 @@
-##[pylyzer] succeed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/hidpi/keyboard_keys.py 1767973278 2615
+##[pylyzer] failed /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/hidpi/keyboard_keys.py 1770051323 2629
 .KEY_NONE: {0}
 .KEY_A: {4}
 .KEY_B: {5}
@@ -90,7 +90,8 @@
 .KEY_F18: {109}
 .KEY_F19: {110}
 .KEY_F20: {111}
-.KEY_MEDIA_PLAY_PAUSE: {205}
+.KEY_MAPPINGS: Never
+E: {205}
 .KEY_MEDIA_NEXT: {181}
 .KEY_MEDIA_PREV: {182}
 .KEY_VOLUME_UP: {233}
