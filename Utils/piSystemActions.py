@@ -28,3 +28,34 @@ def PiReboot():
     except Exception as error:
         print(f"Error during restart: {error}")
 
+
+
+import socket
+
+def get_hostname():
+    return socket.gethostname()
+
+def get_ip():
+    try:
+        # Gets the primary IP used for internet connection
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "IP_NOT_FOUND"
+
+def GetSSHCmd():
+    print('inside GetSSHCmd')
+    hostname = get_hostname()
+    ip = get_ip()
+    sshCmd = f"ssh {hostname}@{ip}"
+    # print(f"ssh {hostname}@{ip}")
+    
+    print(f"GetSSHCmd sshCmd: {sshCmd}")
+    return sshCmd
+
+# if __name__ == "__main__":
+#     main()
+

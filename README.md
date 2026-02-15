@@ -37,6 +37,19 @@ dtoverlay=dwc2
 [cm5]
 dtoverlay=dwc2,dr_mode=peripheral
 
+-- disable this otg_mode
+
+[cm4]
+# Enable host mode on the 2711 built-in XHCI USB controller.
+# This line should be removed if the legacy DWC2 controller is required
+# (e.g. for USB device mode) or if USB support is not required.
+# otg_mode=1
+
+-- if there is something already with dtoverlay then add the dwc2 line below it
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+dtoverlay=dwc2
+
 
 2. Edit `/boot/cmdline.txt`:
 ```
@@ -56,6 +69,30 @@ Reboot:
 ```
 sudo reboot
 ```
+## run 
+CustomKeyboard ➤ cd Initialization                                git:main*
+Initialization ➤ sudo ./installer                                 git:main*
+
+## create a service to autostart the keyboard script:
+
+system ➤ cat customKeyboard.service                                        
+[Unit]
+Description=Custom Keyboard Service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/main.p
+y
+WorkingDirectory=/home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
+
+- Enable the service
+
+# Extra Info
 
 ## Create HID Keyboard Gadget Script
 

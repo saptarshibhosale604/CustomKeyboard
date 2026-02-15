@@ -133,7 +133,7 @@ L7_SHORT = [
 ]
 
 L7_LONG = [
-    ['','','','ACTION_REBOOT','','','','','',''],
+    ['','','','ACTION_REBOOT','','','','FUNCTION_PRINT_SSH_CMD','',''],
     ['LEFT_GUI','LEFT_ALT','LEFT_CTRL','LEFT_SHIFT','TAB','TAB',
      'RIGHT_SHIFT','RIGHT_CTRL','RIGHT_ALT','RIGHT_GUI'],
     ['','ACTION_SHUTDOWN','','','','','','','',''],

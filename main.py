@@ -37,7 +37,7 @@ from Utils.HIDKeyboard.keyboard_keys import *
 from Utils.HIDMedia.media import Media
 from Utils.HIDMedia.media_keys import *
 
-from Utils.piSystemActions import PiShutdown, PiReboot
+from Utils.piSystemActions import PiShutdown, PiReboot, GetSSHCmd
 
 from Utils.layers import (
     LAYER_SHORT_MAP, LAYER_LONG_MAP,
@@ -216,17 +216,25 @@ def HandleLayerXHold(key, layerNumber):
         
         # print(f"HandleLayerXHold longPressTime: key: {key}, keyName: {keyName}")
         if keyName.startswith('FUNCTION_'):
-            function_combo = FUNCTION_COMBOS.get(keyName)
-            if function_combo:
-                mod_key, main_key = function_combo
-                mod_val = keyMap[f"KEY_{mod_key}"]
-                activeModifiers |= mod_val
-                Keyboard.send_key(activeModifiers, keyMap[f"KEY_{main_key}"])
-                activeModifiers = 0
-                # print("activeModifiers = 0")
-                print(f"[SEND] LONG FUNCTIONAL COMBO {keyName}")
-                longSent.add(key)
-                return
+            if keyName == 'FUNCTION_PRINT_SSH_CMD':
+                print('FUNCTION_PRINT_SSH_CMD')
+                getSSHCmd = GetSSHCmd()
+                print(f"getSSHCmd: {getSSHCmd}")
+                print(f"type getSSHCmd: {type(getSSHCmd)}")
+                Keyboard.send_text(getSSHCmd, delay=0.25)
+            else:
+                function_combo = FUNCTION_COMBOS.get(keyName)
+                if function_combo:
+                    mod_key, main_key = function_combo
+                    mod_val = keyMap[f"KEY_{mod_key}"]
+                    activeModifiers |= mod_val
+                    Keyboard.send_key(activeModifiers, keyMap[f"KEY_{main_key}"])
+                    activeModifiers = 0
+                    # print("activeModifiers = 0")
+
+            print(f"[SEND] LONG FUNCTIONAL COMBO {keyName}")
+            longSent.add(key)
+            return
 
         elif keyName.startswith('ACTION_'):
             print(f"[SEND] LONG ACTION COMBO {keyName}")
