@@ -50,7 +50,7 @@ def GetSSHCmd():
     print('inside GetSSHCmd')
     hostname = get_hostname()
     ip = get_ip()
-    sshCmd = f"ssh {hostname}@{ip}"
+    sshCmd = f"ssh {hostname} {ip}"
     # print(f"ssh {hostname}@{ip}")
     
     print(f"GetSSHCmd sshCmd: {sshCmd}")

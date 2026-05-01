@@ -27,7 +27,7 @@ L1_LONG = [
 
 L2_SHORT = [
     # ['FUNCTION_UNDO','FUNCTION_CUT','FUNCTION_COPY','FUNCTION_PASTE',
-    ['','','MOUSE_MOVE_UP','','','','','','',''],
+    ['','','MOUSE_MOVE_UP','','','MOUSE_SCROLL_LEFT','MOUSE_SCROLL_DOWN','MOUSE_SCROLL_UP','MOUSE_SCROLL_RIGHT',''],
     ['','MOUSE_MOVE_LEFT','MOUSE_MOVE_DOWN','MOUSE_MOVE_RIGHT','','','MOUSE_CLICK_LEFT','MOUSE_CLICK_RIGHT','',''],
     # ['','','','','','','MOUSE_SPEED_00','MOUSE_SPEED_02','MOUSE_SPEED_03','MOUSE_SPEED_04'],
     ['','','','','','','MOUSE_SPEED_01','MOUSE_SPEED_04','',''],
@@ -36,9 +36,10 @@ L2_SHORT = [
 
 L2_LONG = [
     ['','','','','','','','','',''],
-    ['LEFT_GUI','LEFT_ALT','LEFT_CTRL','LEFT_SHIFT','TAB','TAB',
-     'RIGHT_SHIFT','RIGHT_CTRL','RIGHT_ALT','RIGHT_GUI'],
-    ['FUNCTION_UNDO','FUNCTION_CUT','FUNCTION_COPY','FUNCTION_PASTE','','','','',''],
+    # ['','','','','','','','','',''],
+    # ['LEFT_GUI','LEFT_ALT','LEFT_CTRL','LEFT_SHIFT','TAB','TAB',
+    #  'RIGHT_SHIFT','RIGHT_CTRL','RIGHT_ALT','RIGHT_GUI'],
+    ['','','','','','','','','',''],
     ['','','','','','','','','',''],
     ['ESC','SPACE','LAYER_TEMP_LAYER_UP_01','','',
      'LAYER_CHANGE_LAYER','FUNCTION_ENTER','DEL','','']
@@ -133,10 +134,10 @@ L7_SHORT = [
 ]
 
 L7_LONG = [
-    ['','','','ACTION_REBOOT','','','','FUNCTION_PRINT_SSH_CMD','',''],
+    ['','','','ACTION_REBOOT','','','ACTION_SHUTDOWN','FUNCTION_PRINT_SSH_CMD','',''],
     ['LEFT_GUI','LEFT_ALT','LEFT_CTRL','LEFT_SHIFT','TAB','TAB',
      'RIGHT_SHIFT','RIGHT_CTRL','RIGHT_ALT','RIGHT_GUI'],
-    ['','ACTION_SHUTDOWN','','','','','','','',''],
+    ['','','','','','','','','',''],
     ['ESC','SPACE','LAYER_TEMP_LAYER_UP_01','','',
      'LAYER_CHANGE_LAYER','FUNCTION_ENTER','DEL','','']
 ]

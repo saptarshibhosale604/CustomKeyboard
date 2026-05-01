@@ -201,19 +201,27 @@ def HandleLayerXHold(key, layerNumber):
     LX_SHORT = layer.get("layout")
     
     if key in longSent:
+        # print('inside key in longsent return')
         return
 
     r, c = key
     keyNameShort = LX_SHORT[r][c]
      
+    # print(f"keyNameShort: {keyNameShort}")
     # Ignore this key in hold
     if keyNameShort.startswith('MOUSE_'):
         return # return without storing in the longSent.add(key)
+
+    # print('inside xhold no return ')
 
     if time.time() - pressTime[key] >= longPressTime:
         r, c = key
         keyName = LX_LONG[r][c]
         
+        # print(f"keyNameLong: {keyName}")
+        # print(f"currentLayer: {currentLayer}")
+        # print(f"LX_LONG: {LX_LONG}")
+        # print(f"key: {key}")
         # print(f"HandleLayerXHold longPressTime: key: {key}, keyName: {keyName}")
         if keyName.startswith('FUNCTION_'):
             if keyName == 'FUNCTION_PRINT_SSH_CMD':
@@ -638,7 +646,8 @@ def SwitchLayer(delta = 0, layerNumber = 0):
     global currentLayer
     # print(f"SwitchLayer Receive delta: {delta}, layerNumber: {layerNumber}")
     if layerNumber != 0:
-        currentLayer = layerNumber 
+        # currentLayer = layerNumber 
+        currentLayer = max(1, min(maxLayer, layerNumber)) 
         # print(f"[LAYER] Non-Delta Switched to {currentLayer}")
         print(f"[LAYER] Direct Switched to layer {currentLayer}")
     else:

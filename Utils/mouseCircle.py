@@ -4,10 +4,6 @@ mouseManager.py
 Terminal-based mouse controller using keyboard input.
 No external libraries required.
 
-- mouse movement
-- mouse click long pressed done
-- movement + mouse click long pressed, not working
-
 Key mappings:
 - Hold 'h' -> move right
 - Hold 'l' -> move left
@@ -25,15 +21,13 @@ import select
 import time
 # from time import sleep
 # from time import sleep, time
-from Utils.HIDMouse import Mouse
-
-mouseRelativeClick = Mouse(absolute=False)
-mouseRelativeMove = Mouse(absolute=False)
+# from Utils.HIDMouse import Mouse
+from HIDMouse import Mouse
 
 # =========================
 # Configuration
 # =========================
-moveStepDefault = 10
+moveStepDefault = 5
 moveStep = moveStepDefault # Default mouse speed
 # mouseSpeedMultiplier = 0 # Default mouse speed
 # moveStep = 2
@@ -41,13 +35,8 @@ moveStep = moveStepDefault # Default mouse speed
 # loopDelay = 0.1
 mouseLoopDelay = 0.01
 maxDelta = 127
+# maxDelta = 65534
 breakMouseLoopTime = 0.2 # Break the mouse loop after this time
-
-scrollStepDefault = 2
-scrollStep = scrollStepDefault # Default mouse speed
-maxScrollDelta = 100
-mouseScrollDelay = 0.2
-
 
 # =========================
 # Mouse Helpers
@@ -76,49 +65,6 @@ def MoveRelative(mouse, dx, dy):
     except Exception as exc:
         print(f"\n⚠️ Mouse movement error: {exc}")
 
-
-def ScrollRelative(mouse, dx, dy):
-    """
-    Move mouse using HID-safe deltas.
-    """
-    try:
-        if (dy != 0):
-            print("scrolling up/down")
-            # mouse.scroll_y(100)
-            # while dx != 0 or dy != 0:
-            while dy != 0:
-                # stepX = max(-maxDelta, min(maxDelta, dx))
-                stepY = max(-maxScrollDelta, min(maxScrollDelta, dy))
-                # stepX = max(0, min(maxDelta, dx))
-                # stepY = max(0, min(maxDelta, dy))
-
-                print(f"ScrollRelative::")
-                # print(f"stepX: {stepX}")
-                print(f"stepY: {stepY}")
-                # time.sleep(3)
-
-                # mouse.move(stepX, stepY)
-
-                mouse.scroll_y(stepY)
-                # dx -= stepX
-                dy -= stepY
-
-        elif (dx != 0):
-            print("scrolling left/right")
-            while dx != 0:
-                stepX = max(-maxScrollDelta, min(maxScrollDelta, dx))
-
-                print(f"ScrollRelative::")
-                print(f"stepX: {stepX}")
-                # time.sleep(3)
-
-                mouse.scroll_x(stepX)
-                dx -= stepX
-        else:
-            print("scrolling nowhere")
-
-    except Exception as exc:
-        print(f"\n⚠️ Mouse movement error: {exc}")
 
 # =========================
 # Info Helpers
@@ -154,10 +100,6 @@ def MouseMovementLoop():
     global movement_down
     global movement_left
     global movement_right
-    global scroll_up
-    global scroll_down
-    global scroll_left
-    global scroll_right
     global isMouseMovementLoopOn
 
     isMouseMovementLoopOn = True
@@ -193,37 +135,10 @@ def MouseMovementLoop():
                 if movement_down:
                     MoveRelative(mouse_relative, 0, moveStep)
                     mouseAction = True
-                    # print("mouse movement down")
-                    # ScrollRelative(mouse_relative, 0, moveStep)
-                    # mouseAction = True
-                    # time.sleep(5)
 
                 if movement_up:
                     MoveRelative(mouse_relative, 0, -moveStep)
                     mouseAction = True
-
-
-                if scroll_down:
-                    # print("mouse movement down")
-                    ScrollRelative(mouse_relative, 0, -scrollStep)
-                    mouseAction = True
-                    time.sleep(mouseScrollDelay)
-
-                if scroll_up:
-                    ScrollRelative(mouse_relative, 0, scrollStep)
-                    mouseAction = True
-                    time.sleep(mouseScrollDelay)
-
-                if scroll_left:
-                    # print("mouse movement down")
-                    ScrollRelative(mouse_relative, -scrollStep, 0)
-                    mouseAction = True
-                    time.sleep(mouseScrollDelay)
-
-                if scroll_right:
-                    ScrollRelative(mouse_relative, scrollStep, 0)
-                    mouseAction = True
-                    time.sleep(mouseScrollDelay)
 
                 # Update last movement time if movement occurred
                 if mouseAction:
@@ -231,12 +146,9 @@ def MouseMovementLoop():
                 else:
                     # Break if no movement for 2 seconds
                     if time.time() - lastMouseActionTime >= breakMouseLoopTime:
-                        if click_left or click_right:
-                            print(f"No movement for {breakMouseLoopTime} Seconds. But click is pressed. \n")
-                        else:
-                            # print(f"\n⏹️ No movement for {breakMouseLoopTime} Seconds. Stopping mouse loop thread.")
-                            print(f"No movement for {breakMouseLoopTime} Seconds. Stopping mouse loop thread.\n")
-                            break
+                        # print(f"\n⏹️ No movement for {breakMouseLoopTime} Seconds. Stopping mouse loop thread.")
+                        print(f"No movement for {breakMouseLoopTime} Seconds. Stopping mouse loop thread.\n")
+                        break
 
                 time.sleep(mouseLoopDelay)
 
@@ -262,11 +174,6 @@ movement_up = False
 movement_down = False
 movement_left = False
 movement_right = False
-
-scroll_up = False
-scroll_down = False
-scroll_left = False
-scroll_right = False
 
 isMouseMovementLoopOn = False
 
@@ -303,20 +210,13 @@ def Main(cmdInput, cmdStatus):
     global movement_left
     global movement_right
     
-    global scroll_up
-    global scroll_down
-    global scroll_left
-    global scroll_right
-
     global isMouseMovementLoopOn
-    global mouseRelativeClick
 
     # print("Enter movement command: up, down, left, right, stop")
     # print("Type 'exit' to quit\n")
 
     
     # print(f"isMouseMovementLoopOn: {isMouseMovementLoopOn}")
-    print(f"mouseManager Main:: cmdInput: {cmdInput}:: cmdStatus: {cmdStatus}")
 
     if not isMouseMovementLoopOn:
         # Start independent loop in another thread
@@ -344,34 +244,16 @@ def Main(cmdInput, cmdStatus):
             if click_left:
                 # print("inside mouse click_left true")
                 mouseAction = True
-                
-                # with Mouse(absolute=False) as mouse_relative:
+                with Mouse(absolute=False) as mouse_relative:
                     # mouse_relative.left_click()
-                mouseRelativeClick.left_click(release=False)
-                print('------ mouse click starts')
-                # time.sleep(5)
-                # print('------ mouse click starts after time.sleep')
+                    mouse_relative.left_click(release=False)
+                    print('------ mouse click starts')
             else:
-                # with Mouse(absolute=False) as mouse_relative:
+                with Mouse(absolute=False) as mouse_relative:
                     # mouse_relative.left_click()
-                mouseRelativeClick.release()
-                print('------ mouse click ends')
+                    mouse_relative.release()
+                    print('------ mouse click ends')
 
-            # if click_left:
-            #     # print("inside mouse click_left true")
-            #     mouseAction = True
-            #     with Mouse(absolute=False) as mouse_relative:
-            #         # mouse_relative.left_click()
-            #         mouse_relative.left_click(release=False)
-            #         print('------ mouse click starts')
-            #         time.sleep(5)
-            #         print('------ mouse click starts after time.sleep')
-            # else:
-            #     with Mouse(absolute=False) as mouse_relative:
-            #         # mouse_relative.left_click()
-            #         mouse_relative.release()
-            #         print('------ mouse click ends')
-            #
 
         elif cmdInput == "click_right":
             # print("inside mouse click_right")
@@ -393,26 +275,11 @@ def Main(cmdInput, cmdStatus):
         elif cmdInput == "move_right":
             movement_right = cmdStatus
 
-    if cmdInput.startswith('scroll'):
-        if cmdInput == "scroll_up":
-            scroll_up = cmdStatus
-        elif cmdInput == "scroll_down":
-            scroll_down = cmdStatus
-        elif cmdInput == "scroll_left":
-            scroll_left = cmdStatus
-        elif cmdInput == "scroll_right":
-            scroll_right = cmdStatus
-
     if cmdInput == "stop":
         movement_up = False
         movement_down = False
         movement_left = False
         movement_right = False
-
-        scroll_up = False
-        scroll_down = False
-        scroll_left = False
-        scroll_right = False
 
     # # debug / status output
     # print(
@@ -421,6 +288,32 @@ def Main(cmdInput, cmdStatus):
     #     f"left={movement_left}, "
     #     f"right={movement_right}"
     # )
+import time
+
+# def MoveMouseSquare(side_time=1.0):
+def MoveMouseSquare(side_time=1.0):
+    while True:
+        # Move Right
+        Main("move_right", True)
+        time.sleep(side_time)
+        Main("move_right", False)
+
+        # Move Down
+        Main("move_down", True)
+        time.sleep(side_time)
+        Main("move_down", False)
+
+        # Move Left
+        Main("move_left", True)
+        time.sleep(side_time)
+        Main("move_left", False)
+
+        # Move Up
+        Main("move_up", True)
+        time.sleep(side_time)
+        Main("move_up", False)
+
+MoveMouseSquare()
 
 def ClickLeftMouse():  # just of testing
     print("inside ClickLeftMouse")
