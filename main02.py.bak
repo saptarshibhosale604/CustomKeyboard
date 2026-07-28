@@ -30,7 +30,7 @@ TODO
 import sys
 import time
 import glob
-from gpiozero import DigitalOutputDevice, Button
+# from gpiozero import DigitalOutputDevice, Button
 
 from Utils.HIDKeyboard import Keyboard
 from Utils.HIDKeyboard.keyboard_keys import *
@@ -116,10 +116,10 @@ def TestHid():
     print("[INFO] HID ready")
 
 def SetupMatrixKeyboard():
-    for p in ROW_PINS_BCM:
-        rowGpios.append(DigitalOutputDevice(p, initial_value=False))
-    for p in COL_PINS_BCM:
-        colGpios.append(Button(p, pull_up=False))
+    # for p in ROW_PINS_BCM:
+    #     rowGpios.append(DigitalOutputDevice(p, initial_value=False))
+    # for p in COL_PINS_BCM:
+    #     colGpios.append(Button(p, pull_up=False))
     print("[OK] GPIO ready")
 
 def ScanMatrix():
@@ -772,7 +772,35 @@ def PrintCurrentLayer():
         print(f"main loop currentLayer: {currentLayer}")
         lastPrintTimeIntervalPrint = currentTimeIntervalPrint  # Reset for next interval
 
+
+
+def read_file(filename):
+    with open(filename, "r") as file:
+        return file.read()
+
+
+# Function to write into a file
+def write_file(filename, content):
+    with open(filename, "w") as file:
+        file.write(content)
+
+
+def SecondaryMouseDetect():
+    data = read_file("Temp/IS_MOUSE_CLICKED.txt")
+    print(data)
+    write_file("Temp/IS_MOUSE_CLICKED.txt", "")
+
+    if(data=="true"):
+        mouseAction = "click_left"
+        print(f'main02 mouseAction: {mouseAction}')
+        mouseManager.Main(mouseAction, True)
+        time.sleep(0.3)
+        mouseManager.Main(mouseAction, False)
+
+
+
 def MainLoop():
+
     global pressed
     global activeModifiers
 
@@ -780,6 +808,12 @@ def MainLoop():
 
     while True:
 
+        SecondaryMouseDetect()
+
+        # sleep.time(0.3)
+        time.sleep(0.3)
+        continue
+        # return
         now = ScanMatrix()
 
         # PrintCurrentLayer()
@@ -808,6 +842,7 @@ def MainLoop():
 
         elif currentLayer == gamingLayerNumber:
             UpdateKeyboardGamingLayer()
+
 
 # --------------------------------------------------
 def WelcomeScript():

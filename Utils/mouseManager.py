@@ -28,7 +28,8 @@ import time
 from Utils.HIDMouse import Mouse
 
 mouseRelativeClick = Mouse(absolute=False)
-mouseRelativeMove = Mouse(absolute=False)
+# mouseRelativeMove = Mouse(absolute=False)
+mouseRelativeMove = mouseRelativeClick
 
 # =========================
 # Configuration
@@ -164,7 +165,8 @@ def MouseMovementLoop():
     lastMouseActionTime = time.time()   # Track last movement timestamp
 
     try:
-        with Mouse(absolute=False) as mouse_relative:
+        # with Mouse(absolute=False) as mouse_relative:
+        if True: # mouseRelativeMove
         # with Mouse(absolute=True) as mouse_relative:
             while True:
                 mouseAction = False  # Flag to detect movement in this iteration
@@ -183,15 +185,19 @@ def MouseMovementLoop():
                 #     mouseAction = True
 
                 if movement_left:
-                    MoveRelative(mouse_relative, -moveStep, 0)
+                    # MoveRelative(mouse_relative, -moveStep, 0)
+                    # MoveRelative(mouse_relative, -moveStep, 0)
+                    MoveRelative(mouseRelativeMove, -moveStep, 0)
                     mouseAction = True
 
                 if movement_right:
-                    MoveRelative(mouse_relative, moveStep, 0)
+                    # MoveRelative(mouse_relative, moveStep, 0)
+                    MoveRelative(mouseRelativeMove, moveStep, 0)
                     mouseAction = True
 
                 if movement_down:
-                    MoveRelative(mouse_relative, 0, moveStep)
+                    # MoveRelative(mouse_relative, 0, moveStep)
+                    MoveRelative(mouseRelativeMove, 0, moveStep)
                     mouseAction = True
                     # print("mouse movement down")
                     # ScrollRelative(mouse_relative, 0, moveStep)
@@ -199,29 +205,30 @@ def MouseMovementLoop():
                     # time.sleep(5)
 
                 if movement_up:
-                    MoveRelative(mouse_relative, 0, -moveStep)
+                    # MoveRelative(mouse_relative, 0, -moveStep)
+                    MoveRelative(mouseRelativeMove, 0, -moveStep)
                     mouseAction = True
 
 
                 if scroll_down:
                     # print("mouse movement down")
-                    ScrollRelative(mouse_relative, 0, -scrollStep)
+                    ScrollRelative(mouseRelativeMove, 0, -scrollStep)
                     mouseAction = True
                     time.sleep(mouseScrollDelay)
 
                 if scroll_up:
-                    ScrollRelative(mouse_relative, 0, scrollStep)
+                    ScrollRelative(mouseRelativeMove, 0, scrollStep)
                     mouseAction = True
                     time.sleep(mouseScrollDelay)
 
                 if scroll_left:
                     # print("mouse movement down")
-                    ScrollRelative(mouse_relative, -scrollStep, 0)
+                    ScrollRelative(mouseRelativeMove, -scrollStep, 0)
                     mouseAction = True
                     time.sleep(mouseScrollDelay)
 
                 if scroll_right:
-                    ScrollRelative(mouse_relative, scrollStep, 0)
+                    ScrollRelative(mouseRelativeMove, scrollStep, 0)
                     mouseAction = True
                     time.sleep(mouseScrollDelay)
 
@@ -348,40 +355,34 @@ def Main(cmdInput, cmdStatus):
                 # with Mouse(absolute=False) as mouse_relative:
                     # mouse_relative.left_click()
                 mouseRelativeClick.left_click(release=False)
-                print('------ mouse click starts')
+                print('------ mouse left click starts')
                 # time.sleep(5)
                 # print('------ mouse click starts after time.sleep')
             else:
                 # with Mouse(absolute=False) as mouse_relative:
                     # mouse_relative.left_click()
                 mouseRelativeClick.release()
-                print('------ mouse click ends')
+                print('------ mouse left click ends')
 
-            # if click_left:
-            #     # print("inside mouse click_left true")
-            #     mouseAction = True
-            #     with Mouse(absolute=False) as mouse_relative:
-            #         # mouse_relative.left_click()
-            #         mouse_relative.left_click(release=False)
-            #         print('------ mouse click starts')
-            #         time.sleep(5)
-            #         print('------ mouse click starts after time.sleep')
-            # else:
-            #     with Mouse(absolute=False) as mouse_relative:
-            #         # mouse_relative.left_click()
-            #         mouse_relative.release()
-            #         print('------ mouse click ends')
-            #
 
         elif cmdInput == "click_right":
             # print("inside mouse click_right")
             click_right = cmdStatus
-            # movement_up = cmdStatus
+            # # movement_up = cmdStatus
+
             if click_right:
-                # print("inside mouse click_right true")
+                # print("inside mouse click_left true")
                 mouseAction = True
-                with Mouse(absolute=False) as mouse_relative:
-                    mouse_relative.right_click()
+                mouseRelativeClick.right_click(release=False)
+                print('------ mouse right click starts')
+            else:
+                mouseRelativeClick.release()
+                print('------ mouse right click ends')
+
+            #     # print("inside mouse click_right true")
+            #     mouseAction = True
+            #     with Mouse(absolute=False) as mouse_relative:
+            #         mouse_relative.right_click()
 
     if cmdInput.startswith('move'):
         if cmdInput == "move_up":

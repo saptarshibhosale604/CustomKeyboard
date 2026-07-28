@@ -114,8 +114,9 @@ gamingLayerNumber = 6
 L6_SHORT_GAME_01 = [
     ['Q','W','E','R','T','Y','U','I','O','P'],
     ['A','S','D','F','G','H','J','K','L','SEMICOLON'],
-    ['Z','X','C','V','B','N','M','COMMA','PERIOD','SLASH'],
-    ['ESC','SPACE','LAYER_UP','','','LAYER_DOWN','ENTER','BACKSPACE','','']
+    ['Z','X','C','V','B','N','M','COMMA','PERIOD','ESC'],
+    ['1','SPACE','2','','','LAYER_DOWN','ENTER','LAYER_UP','','']
+    # ['ESC','SPACE','LAYER_UP','','','LAYER_DOWN','ENTER','BACKSPACE','','']
 ]
 
 # --------------------------------------------------
@@ -129,7 +130,7 @@ L7_SHORT = [
      'LAYER_CHANGE_5','LAYER_CHANGE_6','LAYER_CHANGE_7','LAYER_CHANGE_8',
      'LAYER_CHANGE_9','SPECIAL_QUIT_KEYBOARD'],
     ['','','','','','','LAYER_CHANGE_BASE','LAYER_CHANGE_GAMING','',''],
-    ['','','','','','','','','',''],
+    ['FK_VALO','','','','','','','','',''],
     ['ESC','SPACE','LAYER_UP','','','LAYER_DOWN','ENTER','BACKSPACE','','']
 ]
 
