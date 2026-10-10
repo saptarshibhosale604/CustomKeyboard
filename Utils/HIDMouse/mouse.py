@@ -17,6 +17,10 @@ class Mouse:
         self.buttons_state = 0x0
 
     def __setup_device(self, dev, absolute: bool):
+        if dev is None and not absolute:
+            # Relative mouse reports go through Utils.HIDTransport (USB or Bluetooth)
+            self.dev = None
+            return
         if dev is None:
             dev = (
                 defaults.ABSOLUTE_MOUSE_PATH
@@ -108,7 +112,8 @@ class Mouse:
         return self
 
     def _clean_resources(self):
-        self.dev.close()
+        if self.dev is not None:
+            self.dev.close()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._clean_resources()

@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# One-time setup so main.py can act as a Classic Bluetooth HID keyboard:
+#   sudo python3 main.py --transport bluetooth
+#
+# - installs python3-dbus, python3-gi
+# - starts bluetoothd without its "input" plugin (frees L2CAP PSM 17/19 for main.py;
+#   the Pi itself can no longer use Bluetooth keyboards/mice while this is installed)
+# - sets the adapter class to peripheral/keyboard and its name to CustomKeyboard
+#
+# Run again to uninstall.
+
+DROPIN_DIR="/etc/systemd/system/bluetooth.service.d"
+DROPIN_FILE="${DROPIN_DIR}/customkeyboard.conf"
+MAIN_CONF="/etc/bluetooth/main.conf"
+BLUETOOTHD="/usr/libexec/bluetooth/bluetoothd"
+CONF_MARKER="# CustomKeyboard bluetooth HID (added by install_bluetooth)"
+CONF_CLASS="Class = 0x002540"
+CONF_NAME="Name = CustomKeyboard"
+
+check_root() {
+    if [ "$(id -u)" -ne 0 ] ; then
+        echo "This script must be executed with root privileges."
+        exit 1
+    fi
+}
+
+restart_bluetooth() {
+    systemctl daemon-reload
+    systemctl restart bluetooth
+    sleep 1
+    systemctl --no-pager --lines=0 status bluetooth
+}
+
+install() {
+    apt-get install -y python3-dbus python3-gi
+
+    mkdir -p "$DROPIN_DIR"
+    cat > "$DROPIN_FILE" <<EOF
+[Service]
+ExecStart=
+ExecStart=${BLUETOOTHD} -P input
+EOF
+
+    if grep -qE '^\s*(Class|Name)\s*=' "$MAIN_CONF"; then
+        echo "[note] ${MAIN_CONF} already sets Class or Name, check they don't override ours:"
+        grep -nE '^\s*(Class|Name)\s*=' "$MAIN_CONF"
+    fi
+    sed -i "/^\[General\]/a ${CONF_MARKER}\n${CONF_CLASS}\n${CONF_NAME}" "$MAIN_CONF"
+
+    rfkill unblock bluetooth
+    restart_bluetooth
+    echo
+    echo "Installed. Start the keyboard with: sudo python3 main.py --transport bluetooth"
+}
+
+uninstall() {
+    rm -f "$DROPIN_FILE"
+    rmdir --ignore-fail-on-non-empty "$DROPIN_DIR" 2>/dev/null
+    sed -i "/^${CONF_MARKER}$/d; /^${CONF_CLASS}$/d; /^${CONF_NAME}$/d" "$MAIN_CONF"
+    restart_bluetooth
+    echo
+    echo "Uninstalled. (python3-dbus / python3-gi were left installed.)"
+}
+
+check_root
+if [ -f "$DROPIN_FILE" ]; then
+    echo "Looks like the Bluetooth keyboard setup is already installed"
+    read -p "Do you want to uninstall it? (y/N) " yn </dev/tty
+    case $yn in
+        [Yy]* ) uninstall;;
+        * ) exit 0;;
+    esac
+else
+    install
+fi

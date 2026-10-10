@@ -5,8 +5,7 @@ such as volume, play/pause, next, previous, etc., to a HID device.
 
 import time
 from .media_keys import *
-
-HID_DEVICE = "/dev/hidg3"
+from Utils import HIDTransport
 
 
 class Media:
@@ -58,6 +57,5 @@ class Media:
         :type key_mask: int
         """
         report = key_mask.to_bytes(2, byteorder="little")
-        with open(HID_DEVICE, "rb+") as fd:
-            fd.write(report)
+        HIDTransport.send("media", report)
 

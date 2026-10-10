@@ -17,3 +17,14 @@ Execute `installer`
 ```bash
 sudo ./installer
 ```
+
+# Bluetooth mode (CustomKeyboard)
+
+The keyboard can also run as a Classic Bluetooth HID device instead of over USB:
+
+```bash
+sudo ./bluetooth/install_bluetooth                 # once: deps, bluetoothd -P input, keyboard class/name
+sudo python3 main.py --transport bluetooth         # from the repo root
+```
+
+Then pair "CustomKeyboard" from the host. Running `install_bluetooth` again uninstalls it.

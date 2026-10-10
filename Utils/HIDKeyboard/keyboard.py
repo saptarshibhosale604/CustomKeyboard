@@ -5,8 +5,7 @@ It supports modifier keys, key holding, text input, and key release.
 
 import time
 from .keyboard_keys import *
-
-HID_DEVICE = "/dev/hidg0"
+from Utils import HIDTransport
 
 class Keyboard:
     """
@@ -104,5 +103,4 @@ class Keyboard:
         :param report: The raw HID report data to send to the HID device.
         :type report: bytes
         """
-        with open(HID_DEVICE, "rb+") as fd:
-            fd.write(report)
+        HIDTransport.send("keyboard", report)

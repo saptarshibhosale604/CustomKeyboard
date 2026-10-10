@@ -1,4 +1,5 @@
 from . import write as hid_write
+from Utils import HIDTransport
 
 
 def relative_mouse_event(
@@ -11,6 +12,9 @@ def relative_mouse_event(
         vertical_wheel_delta & 0xFF,
         horizontal_wheel_delta & 0xFF,
     ]
+    if dev is None:
+        HIDTransport.send("mouse", bytes(buf))
+        return
     hid_write.write_to_hid_interface(dev, buf)
 
 

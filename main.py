@@ -23,6 +23,7 @@ main.py, working
 - numpad
 - one handed mode for mod keys
 - media keys
+- bluetooth output: python main.py --transport bluetooth (run as root)
 
 TODO
 """
@@ -30,8 +31,10 @@ TODO
 import sys
 import time
 import glob
+import argparse
 from gpiozero import DigitalOutputDevice, Button
 
+from Utils import HIDTransport
 from Utils.HIDKeyboard import Keyboard
 from Utils.HIDKeyboard.keyboard_keys import *
 from Utils.HIDMedia.media import Media
@@ -111,6 +114,13 @@ activeModifiers = 0
 # --------------------------------------------------
 
 def TestHid():
+    if HIDTransport.get_mode() == "bluetooth":
+        from Utils.HIDTransport import bluetooth
+        status = bluetooth.start()
+        print(f"[INFO] Bluetooth HID ready on {status['adapter']}, "
+              f"pair/connect to '{status['name']}' from the host")
+        return
+
     if not glob.glob('/dev/hidg*'):
         raise RuntimeError("No HID device found")
     print("[INFO] HID ready")
@@ -812,10 +822,19 @@ def MainLoop():
 # --------------------------------------------------
 def WelcomeScript():
     print("WELCOME SSB, To Custom Keyboard.")
+    print(f"Output transport: {HIDTransport.get_mode()}")
     print("For quiting the keyboard script: Layer 02, hold, Z")
+
+def ParseArgs():
+    parser = argparse.ArgumentParser(description="Custom matrix keyboard")
+    parser.add_argument("--transport", choices=HIDTransport.MODES, default="usb",
+                        help="send keys over the USB gadget (default) or Bluetooth (needs root)")
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
+    args = ParseArgs()
+    HIDTransport.set_mode(args.transport)
     WelcomeScript()
     TestHid()
     SetupMatrixKeyboard()
